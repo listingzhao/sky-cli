@@ -1,6 +1,7 @@
 import 'babel-polyfill';
 import * as React from 'react';
 import ReactDOM from 'react-dom';
+import './index.css'
 
 let hello: string = 'Hello WPT'
 

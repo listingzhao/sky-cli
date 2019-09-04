@@ -1,8 +1,10 @@
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { resolve } = require('./utils')
 
 const babelConfig = require('./getBabelConfig')(false)
+const postcssConfig = require('./getPostcssConfig')
 
 module.exports = {
     entry: './src/index.tsx',
@@ -36,6 +38,22 @@ module.exports = {
                     },
                 ],
                 exclude: /node_modules/,
+            },
+            {
+                test: /\.css$/,
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            sourceMap: true,
+                        },
+                    },
+                    {
+                        loader: 'postcss-loader',
+                        options: Object.assign({}, postcssConfig, { sourceMap: true }),
+                    }
+                ],
             },
         ],
     },
