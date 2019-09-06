@@ -6,6 +6,15 @@ const { resolve } = require('./utils')
 const babelConfig = require('./getBabelConfig')(false)
 const postcssConfig = require('./getPostcssConfig')
 
+const svgRegex = /\.svg(\?v=\d+\.\d+\.\d+)?$/
+const svgOptions = {
+    limit: 10000,
+    minetype: 'image/svg+xml',
+}
+
+const imageOptions = {
+    limit: 10000,
+}
 module.exports = {
     entry: './src/index.tsx',
     output: {
@@ -51,9 +60,40 @@ module.exports = {
                     },
                     {
                         loader: 'postcss-loader',
-                        options: Object.assign({}, postcssConfig, { sourceMap: true }),
-                    }
+                        options: { ...postcssConfig, sourceMap: true },
+                    },
                 ],
+            },
+            {
+                test: /\.less$/,
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            sourceMap: true,
+                        },
+                    },
+                    {
+                        loader: 'postcss-loader',
+                        options: { ...postcssConfig, sourceMap: true },
+                    },
+                    {
+                        loader: 'less-loader',
+                        options: { javascriptEnabled: true, sourceMap: true },
+                    },
+                ],
+            },
+            // image
+            {
+                test: /\.(png|jpg|jpeg|gif)(\?v=\d+\.\d+\.\d+)?$/i,
+                loader: 'url-loader',
+                options: imageOptions,
+            },
+            {
+                test: svgRegex,
+                loader: 'url-loader',
+                options: svgOptions,
             },
         ],
     },

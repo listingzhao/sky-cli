@@ -5,11 +5,14 @@
     "main": "src/index.tsx",
     "author": "赵锌泽 <zhaoxz@weipaitang.com>",
     "license": "MIT",
+    "bin": {
+        "sky-cli": "./bin/sky.js"
+    },
     "scripts": {
         "start": "webpack-dev-server --mode=development --config ./build/webpack.config.js",
         "build": "webpack --mode=production --config ./build/webpack.config.js"
     },
-    "devDependencies": {
+    "dependencies": {
         "@babel/core": "^7.5.5",
         "@babel/plugin-transform-member-expression-literals": "^7.2.0",
         "@babel/plugin-transform-typescript": "^7.5.5",
@@ -18,30 +21,35 @@
         "@types/react": "^16.9.2",
         "@types/react-dom": "^16.9.0",
         "autoprefixer": "^9.6.1",
-        "babel-loader": "^8.0.6",
+        "babel-loader": "8.0.6",
         "babel-plugin-inline-import-data-uri": "^1.0.1",
+        "chalk": "^2.4.2",
         "clean-webpack-plugin": "^3.0.0",
+        "cross-spawn": "^7.0.0",
         "css-loader": "^3.2.0",
+        "globby": "^10.0.1",
         "html-webpack-plugin": "^3.2.0",
+        "immer": "^3.2.0",
         "mini-css-extract-plugin": "^0.8.0",
         "optimize-css-assets-webpack-plugin": "^5.0.3",
         "postcss-loader": "^3.0.0",
         "rucksack-css": "^1.0.2",
+        "semver": "^6.3.0",
         "ts-loader": "^6.0.4",
         "typescript": "^3.6.2",
-        "webpack": "^4.39.3",
+        "url-loader": "^2.1.0",
+        "webpack": "4.39.3",
         "webpack-cli": "^3.3.7",
-        "webpack-dev-server": "^3.8.0",
+        "webpack-dev-server": "3.8.0",
         "webpack-merge": "^4.2.2"
     },
-    "dependencies": {
+    "devDependencies": {
         "antd": "^3.23.1",
-        "babel-polyfill": "^6.26.0",
         "react": "^16.9.0",
         "react-dom": "^16.9.0"
     },
     "browserslist": [
-        "last 4 versions",
+        "last 2 versions",
         "Firefox ESR",
         "> 1%",
         "ie >= 9",
