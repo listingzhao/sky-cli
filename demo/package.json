@@ -1,0 +1,16 @@
+{
+  "name": "demo",
+  "version": "0.0.1",
+  "description": "demo",
+  "main": "src/index.tsx",
+  "dependencies": {},
+  "devDependencies": {},
+  "browserslist": [
+    "last 2 versions",
+    "Firefox ESR",
+    "> 1%",
+    "ie >= 9",
+    "iOS >= 8",
+    "Android >= 4"
+  ]
+}

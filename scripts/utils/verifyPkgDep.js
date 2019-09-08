@@ -24,7 +24,6 @@ function verifyPkgDep() {
         }
         expectedVersionDep[dep] = expectedVersion
     })
-    console.log(expectedVersionDep)
 
     let currentDir = __dirname
     while (true) {

@@ -7,7 +7,7 @@ const globby = require('globby')
 const os = require('os')
 const path = require('path')
 const resolve = require('resolve')
-const produce = require('immer')
+const produce = require('immer').produce
 const paths = require('../../build/paths')
 
 function writeJson(fileName, object) {
@@ -119,10 +119,10 @@ function verifyTypeScriptSetup() {
     let parsedTsConfig
     let parsedCompilerOptions
     try {
-        console.log(ts.readConfigFile)
+        // console.log(ts.sys)
         const { config: readTsConfig, error } = ts.readConfigFile(
             paths.appTsConfig,
-            ts.sys.redFile
+            ts.sys.readFile
         )
         if (error) {
             throw new Error(ts.formatDiagnostic(error, formatHost))
@@ -164,7 +164,61 @@ function verifyTypeScriptSetup() {
         const { parsedValue, value, suggested, reason } = compilerOptions[
             option
         ]
+        // console.log(reason)
         const checkValue = parsedValue === undefined ? value : parsedValue
+        const colorOutPutOptions = chalk.cyan('compilerOptions.' + option)
+
+        if (suggested != null) {
+            if (parsedCompilerOptions[option] == undefined) {
+                appTsConfig.compilerOptions[option] = suggested
+                messages.push(
+                    `${colorOutPutOptions} to be ${chalk.bold(
+                        'suggested'
+                    )} value: ${chalk.cyan.bold(suggested)} this can be changed`
+                )
+            }
+        } else if (parsedCompilerOptions[option] !== checkValue) {
+            appTsConfig.compilerOptions[option] = value
+            messages.push(
+                `${colorOutPutOptions} ${chalk.bold(
+                    checkValue == null ? 'must be' : 'must'
+                )} be ${checkValue == null ? 'set' : chalk.cyan.bold(value)}` +
+                    (reason != null ? `(${reason})` : '')
+            )
+        }
+    }
+
+    // merged include exclude
+    if (parsedTsConfig.include == null) {
+        appTsConfig.include = ['src']
+        messages.push(
+            `${chalk.cyan('include')} should be ${chalk.cyan.bold('src')}`
+        )
+    }
+
+    if (messages.length > 0) {
+        if (firstSetup) {
+            console.log(
+                chalk.bold(
+                    `Your ${chalk.cyan(
+                        'tsconfig.json'
+                    )} has been populated with default values.`
+                )
+            )
+        } else {
+            console.warn(
+                chalk.bold(
+                    `The folloing changes are being made to your ${chalk.cyan(
+                        'tsconfig.json'
+                    )} file:`
+                )
+            )
+
+            messages.forEach(msg => {
+                console.warn('-' + msg)
+            })
+        }
+        writeJson(paths.appTsConfig, appTsConfig)
     }
 }
 
