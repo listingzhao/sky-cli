@@ -21,10 +21,12 @@ const resolveModules = (resolveFn, path) => {
 
 module.exports = {
     appPath: resolveApp('.'),
+    appPublic: resolveApp('public'),
     appHtml: resolveApp('public/index.html'),
     appIndexJs: resolveModules(resolveApp, 'src/index'),
     appSrc: resolveApp('src'),
     appTsConfig: resolveApp('tsconfig.json'),
+    pkgJson: resolveApp('package.json'),
     appNodeModules: resolveApp('node_modules'),
     yarnLockFile: resolveApp('yarn.lock'),
 }

@@ -1,4 +1,5 @@
 const webpack = require('webpack')
+const paths = require('./paths')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { resolve } = require('./utils')
@@ -16,7 +17,7 @@ const imageOptions = {
     limit: 10000,
 }
 module.exports = {
-    entry: './src/index.tsx',
+    entry: paths.appIndexJs,
     output: {
         filename: 'app.js',
     },
@@ -102,7 +103,7 @@ module.exports = {
             React: 'react',
         }),
         new HtmlWebpackPlugin({
-            template: './src/tpl/index.html',
+            template: paths.appHtml,
         }),
     ],
 }
