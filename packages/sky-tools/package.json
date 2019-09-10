@@ -1,0 +1,19 @@
+{
+    "name": "sky-tools",
+    "version": "0.0.1",
+    "description": "dev-tools",
+    "engines": {
+        "node": ">=8.10"
+    },
+    "files": [
+        "clearConsole.js"
+    ],
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+        "sky-tools"
+    ],
+    "author": "",
+    "license": "ISC"
+}
