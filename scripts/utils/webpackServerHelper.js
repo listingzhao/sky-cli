@@ -99,7 +99,6 @@ function createCompiler({ config, appName, urls, useYarn }) {
         if (isActive) {
             clearConsole()
         }
-
         const statsData = stats.toJson({
             all: false,
             warnings: true,

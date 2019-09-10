@@ -88,7 +88,7 @@ checkBrowsers(paths.appPath, isActive)
         console.log(Array.from(['SIGINT', 'SIGTERM']))
         Array.from(['SIGINT', 'SIGTERM']).forEach(sig => {
             process.on(sig, () => {
-                console.log('接收到 SIGINT 按 Control-C 退出')
+                console.log('Control-C 退出')
                 devServer.close()
                 process.exit(1)
             })

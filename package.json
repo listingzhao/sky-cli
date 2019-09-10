@@ -9,7 +9,7 @@
         "sky-cli": "./bin/sky.js"
     },
     "scripts": {
-        "start": "webpack-dev-server --mode=development --config ./build/webpack.config.js",
+        "start": "node ./bin/sky.js start",
         "build": "webpack --mode=production --config ./build/webpack.config.js"
     },
     "dependencies": {
@@ -51,6 +51,7 @@
         "webpack-merge": "^4.2.2"
     },
     "devDependencies": {
+        "lerna": "^3.16.4",
         "antd": "^3.23.1",
         "react": "^16.9.0",
         "react-dom": "^16.9.0"
