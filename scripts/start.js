@@ -36,6 +36,7 @@ const DEFAULT_PORT = parseInt(process.env.PORT, 10) || 3000
 const HOST = process.env.HOST || '0.0.0.0'
 
 const { checkBrowsers } = require('./utils/browserHelper')
+const openBrowser = require('./utils/openBrowser')
 const {
     choosePort,
     createCompiler,
@@ -81,7 +82,8 @@ checkBrowsers(paths.appPath, isActive)
             if (isActive) {
                 clearConsole()
             }
-            console.log(chalk.cyan('Starting the develoment server'))
+            console.log(chalk.cyan('Starting the develoment server. \n'))
+            openBrowser(urls.localUrlForBoswer)
         })
         console.log(Array.from(['SIGINT', 'SIGTERM']))
         Array.from(['SIGINT', 'SIGTERM']).forEach(sig => {

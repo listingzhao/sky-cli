@@ -36,6 +36,7 @@ function fomatWebpackMsgs(jsonData) {
     const fomatErrs = jsonData.errors.map(msg => fomatMsg(msg))
     const fomatWarns = jsonData.warnings.map(msg => fomatMsg(msg))
     const result = { errors: fomatErrs, warnings: fomatWarns }
+    // 有语法错误优先展示
     if (result.errors.some(isLikeASyntaxError)) {
         result.errors = result.errors.filter(isLikeASyntaxError)
     }

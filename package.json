@@ -36,6 +36,7 @@
         "inquirer": "^7.0.0",
         "is-root": "^2.1.0",
         "mini-css-extract-plugin": "^0.8.0",
+        "open": "^6.4.0",
         "optimize-css-assets-webpack-plugin": "^5.0.3",
         "pkg-up": "^3.1.0",
         "postcss-loader": "^3.0.0",

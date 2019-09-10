@@ -1,6 +1,7 @@
 const detect = require('detect-port-alt')
 const chalk = require('chalk')
 const url = require('url')
+const fs = require('fs')
 const address = require('address')
 const webpack = require('webpack')
 const isRoot = require('is-root')
@@ -77,7 +78,7 @@ function choosePort(host, defaultPort) {
     )
 }
 
-function createCompiler({ config, appName }) {
+function createCompiler({ config, appName, urls, useYarn }) {
     let compiler
     try {
         compiler = webpack(config)
@@ -98,27 +99,47 @@ function createCompiler({ config, appName }) {
         if (isActive) {
             clearConsole()
         }
-        // console.log(stats)
+
         const statsData = stats.toJson({
             all: false,
             warnings: true,
             errors: true,
         })
-        console.log(statsData)
+        // console.log(statsData)
         const webpackMsg = fomatWebpackMsgs(statsData)
         const isSuccess =
             !webpackMsg.errors.length && !webpackMsg.warnings.length
         if (isSuccess) {
             console.log(chalk.green('Compiled successfully!'))
+            pringtIntroductions(appName, urls)
         }
     })
 
     return compiler
 }
 
+function pringtIntroductions(appName, urls) {
+    console.log(`You can now view ${chalk.bold(appName)} in the browser.`)
+    if (urls.urlForTerminal) {
+        console.log(`Local: ${urls.localUrlForTerminal}`)
+        console.log(`Network: ${urls.urlForTerminal}`)
+    } else {
+        console.log(`${urls.localUrlForTerminal}`)
+    }
+    console.log()
+    console.log('Note that the development build is not optimized.')
+}
+
 function createProxy(proxy, appPublic) {
     if (!proxy) {
         return undefined
+    }
+
+    function mayProxy(pathName) {
+        const mayPublicPath = path.resolve(appPublic, pathName.slice(1))
+        console.log(mayPublicPath)
+        const isPublicFileReq = fs.existsSync(mayPublicPath)
+        return !isPublicFileReq
     }
 
     let target
@@ -130,6 +151,15 @@ function createProxy(proxy, appPublic) {
 
     return [
         {
+            context: (pathName, req) => {
+                console.log(pathName)
+                return (
+                    req.method !== 'GET' ||
+                    (mayProxy(pathName) &&
+                        req.headers.accept &&
+                        req.headers.accept.indexOf('text/html') === -1)
+                )
+            },
             target,
             logLevel: 'silent',
             onProxyReq: proxyReq => {
