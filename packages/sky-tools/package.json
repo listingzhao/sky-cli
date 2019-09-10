@@ -1,6 +1,6 @@
 {
     "name": "sky-tools",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "dev-tools",
     "engines": {
         "node": ">=8.10"
