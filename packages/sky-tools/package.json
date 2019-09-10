@@ -14,6 +14,11 @@
     "keywords": [
         "sky-tools"
     ],
-    "author": "",
-    "license": "ISC"
+    "author": "zxz <listing.zhao@gmail.com>",
+    "license": "MIT",
+    "dependencies": {
+        "chalk": "^2.4.2",
+        "detect-port-alt": "^1.1.6",
+        "is-root": "^2.1.0"
+    }
 }

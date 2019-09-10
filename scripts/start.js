@@ -25,7 +25,7 @@ const paths = require('../build/paths')
 const webpackConfig = require('../build/webpack.config')
 const webpack = require('webpack')
 const webpackDevServer = require('webpack-dev-server')
-const clearConsole = require('./utils/clearConsole')
+const clearConsole = require('sky-tools/clearConsole')
 const isActive = process.stdout.isTTY
 
 if (!checkRequiredFiles([paths.appHtml, paths.appIndexJs])) {
@@ -42,7 +42,7 @@ const {
     createCompiler,
     createProxy,
     preParseUrls,
-} = require('./utils/webpackServerHelper')
+} = require('sky-tools/webpackServerHelper')
 const createDevServerConfig = require('../build/webpackDevServer.config')
 
 checkBrowsers(paths.appPath, isActive)
