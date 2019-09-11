@@ -78,7 +78,7 @@ function choosePort(host, defaultPort) {
     )
 }
 
-function createCompiler({ config, appName, urls, useYarn }) {
+function createCompiler({ config, appName, urls }) {
     let compiler
     try {
         compiler = webpack(config)
@@ -87,18 +87,18 @@ function createCompiler({ config, appName, urls, useYarn }) {
         console.log(error.message || error)
         process.exit(1)
     }
-    // console.log(compiler.hooks)
+
     compiler.hooks.invalid.tap('invalid', () => {
-        // if (isActive) {
-        //     clearConsole()
-        // }
+        if (isActive) {
+            clearConsole()
+        }
         console.log('Compiling...')
     })
 
     compiler.hooks.done.tap('done', async stats => {
-        // if (isActive) {
-        //     clearConsole()
-        // }
+        if (isActive) {
+            clearConsole()
+        }
         const statsData = stats.toJson({
             all: false,
             warnings: true,
