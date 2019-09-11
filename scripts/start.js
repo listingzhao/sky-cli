@@ -18,7 +18,7 @@ if (process.env.SKIP_PKGDEP_CHECK !== 'true') {
 const verifyTypeScript = require('./utils/verifyTypeScript')
 verifyTypeScript()
 
-const checkRequiredFiles = require('./utils/checkRequiredFiles')
+const checkRequiredFiles = require('sky-tools/checkRequiredFiles')
 const fs = require('fs')
 const chalk = require('chalk')
 const paths = require('../build/paths')
@@ -35,8 +35,8 @@ if (!checkRequiredFiles([paths.appHtml, paths.appIndexJs])) {
 const DEFAULT_PORT = parseInt(process.env.PORT, 10) || 3000
 const HOST = process.env.HOST || '0.0.0.0'
 
-const { checkBrowsers } = require('./utils/browserHelper')
-const openBrowser = require('./utils/openBrowser')
+const { checkBrowsers } = require('sky-tools/browserHelper')
+const openBrowser = require('sky-tools/openBrowser')
 const {
     choosePort,
     createCompiler,
