@@ -22,10 +22,6 @@
     },
     "homepage": "https://github.com/listingzhao/sky-cli#readme",
     "dependencies": {
-        "@babel/core": "^7.6.0",
-        "@babel/plugin-transform-typescript": "^7.6.0",
-        "@babel/preset-env": "^7.6.0",
-        "@babel/preset-react": "^7.0.0",
         "autoprefixer": "^9.6.1",
         "babel-loader": "^8.0.6",
         "babel-plugin-inline-import-data-uri": "^1.0.1",
@@ -45,5 +41,6 @@
         "webpack-cli": "^3.3.7",
         "webpack-dev-server": "3.8.0",
         "webpack-merge": "^4.2.2"
-    }
+    },
+    "gitHead": "a3ac5394003f85a9a56856bb0fb5959334be430b"
 }
