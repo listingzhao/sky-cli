@@ -9120,10 +9120,14 @@ simple-swizzle@^0.2.2:
   dependencies:
     is-arrayish "^0.3.1"
 
-sky-tools@^0.0.3:
-  version "0.0.3"
-  resolved "https://registry.npmjs.org/sky-tools/-/sky-tools-0.0.3.tgz#81fbbfce51a31054285842c499806a50da5ce37f"
-  integrity sha512-5zBYIcERErijPcrah6CJaBbLA2K839dUK3b8VVTkHNoE8m0r57P6fDmypoi9X8UrPh+bba+gtCJgOCHD4a69JA==
+sky-tools@^0.0.4:
+  version "0.0.4"
+  resolved "https://registry.npm.taobao.org/sky-tools/download/sky-tools-0.0.4.tgz#9e06ca764b1d6086bde9c442e7abc1d19552b944"
+  integrity sha1-ngbKdksdYIa96cRC56vB0ZVSuUQ=
+  dependencies:
+    chalk "^2.4.2"
+    detect-port-alt "^1.1.6"
+    is-root "^2.1.0"
 
 slash@^1.0.0:
   version "1.0.0"

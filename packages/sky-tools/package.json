@@ -6,6 +6,8 @@
         "node": ">=8.10"
     },
     "files": [
+        "fomatWebpackMsgs.js",
+        "webpackServerHelper.js",
         "clearConsole.js"
     ],
     "scripts": {
