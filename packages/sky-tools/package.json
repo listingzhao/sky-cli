@@ -6,6 +6,7 @@
         "node": ">=8.10"
     },
     "files": [
+        "browserHelper.js",
         "openBrowser.js",
         "checkRequiredFiles.js",
         "fomatWebpackMsgs.js",
