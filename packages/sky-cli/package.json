@@ -1,9 +1,9 @@
 {
-    "name": "sky-cli",
+    "name": "sky-scripts",
     "version": "0.0.3",
-    "description": "sky-cli",
+    "description": "sky-scripts",
     "bin": {
-        "sky-cli": "./bin/sky.js"
+        "sky-scripts": "./bin/sky.js"
     },
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
@@ -13,7 +13,7 @@
         "url": "git+https://github.com/listingzhao/sky-cli.git"
     },
     "keywords": [
-        "sky-cli"
+        "sky-scripts"
     ],
     "author": "zxz <listing.zhao@gmail.com>",
     "license": "MIT",
@@ -42,5 +42,5 @@
         "webpack-dev-server": "3.8.0",
         "webpack-merge": "^4.2.2"
     },
-    "gitHead": "a3ac5394003f85a9a56856bb0fb5959334be430b"
+    "gitHead": "0b3205be059cac058f56ddf16be1a03f70c98d4c"
 }
