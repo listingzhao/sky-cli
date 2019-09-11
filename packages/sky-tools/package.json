@@ -22,8 +22,12 @@
     "author": "zxz <listing.zhao@gmail.com>",
     "license": "MIT",
     "dependencies": {
+        "address": "^1.1.2",
+        "browserslist": "^4.7.0",
         "chalk": "^2.4.2",
         "detect-port-alt": "^1.1.6",
-        "is-root": "^2.1.0"
+        "inquirer": "^7.0.0",
+        "is-root": "^2.1.0",
+        "pkg-up": "^3.1.0"
     }
 }

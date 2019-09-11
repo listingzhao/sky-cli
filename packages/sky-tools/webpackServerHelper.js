@@ -5,7 +5,7 @@ const fs = require('fs')
 const address = require('address')
 const webpack = require('webpack')
 const isRoot = require('is-root')
-const clearConsole = require('sky-tools/clearConsole')
+const clearConsole = require('./clearConsole')
 const fomatWebpackMsgs = require('./fomatWebpackMsgs')
 const isActive = process.stdout.isTTY
 
@@ -89,22 +89,22 @@ function createCompiler({ config, appName, urls, useYarn }) {
     }
     // console.log(compiler.hooks)
     compiler.hooks.invalid.tap('invalid', () => {
-        if (isActive) {
-            clearConsole()
-        }
+        // if (isActive) {
+        //     clearConsole()
+        // }
         console.log('Compiling...')
     })
 
     compiler.hooks.done.tap('done', async stats => {
-        if (isActive) {
-            clearConsole()
-        }
+        // if (isActive) {
+        //     clearConsole()
+        // }
         const statsData = stats.toJson({
             all: false,
             warnings: true,
             errors: true,
         })
-        // console.log(statsData)
+
         const webpackMsg = fomatWebpackMsgs(statsData)
         const isSuccess =
             !webpackMsg.errors.length && !webpackMsg.warnings.length
@@ -127,6 +127,7 @@ function pringtIntroductions(appName, urls) {
     }
     console.log()
     console.log('Note that the development build is not optimized.')
+    console.log()
 }
 
 function createProxy(proxy, appPublic) {

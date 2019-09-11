@@ -2,8 +2,6 @@
 
 const execSync = require('child_process').execSync
 const open = require('open')
-const chalk = require('chalk')
-const spawn = require('cross-spawn')
 
 const OSX_CHROME = 'google chrome'
 
