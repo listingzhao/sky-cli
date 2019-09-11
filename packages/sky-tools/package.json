@@ -8,6 +8,7 @@
     "files": [
         "browserHelper.js",
         "openBrowser.js",
+        "openChrome.applescript",
         "checkRequiredFiles.js",
         "fomatWebpackMsgs.js",
         "webpackServerHelper.js",

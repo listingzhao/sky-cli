@@ -1887,7 +1887,7 @@ add-dom-event-listener@^1.1.0:
   dependencies:
     object-assign "4.x"
 
-address@^1.0.1:
+address@^1.0.1, address@^1.1.2:
   version "1.1.2"
   resolved "https://registry.npm.taobao.org/address/download/address-1.1.2.tgz#bf1116c9c758c51b7a933d296b72c221ed9428b6"
   integrity sha1-vxEWycdYxRt6kz0pa3LCIe2UKLY=
@@ -2783,7 +2783,7 @@ cli-cursor@^2.1.0:
 
 cli-cursor@^3.1.0:
   version "3.1.0"
-  resolved "https://registry.npm.taobao.org/cli-cursor/download/cli-cursor-3.1.0.tgz#264305a7ae490d1d03bf0c9ba7c925d1753af307"
+  resolved "https://registry.npm.taobao.org/cli-cursor/download/cli-cursor-3.1.0.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fcli-cursor%2Fdownload%2Fcli-cursor-3.1.0.tgz#264305a7ae490d1d03bf0c9ba7c925d1753af307"
   integrity sha1-JkMFp65JDR0Dvwybp8kl0XU68wc=
   dependencies:
     restore-cursor "^3.1.0"
@@ -9120,14 +9120,18 @@ simple-swizzle@^0.2.2:
   dependencies:
     is-arrayish "^0.3.1"
 
-sky-tools@^0.0.8:
-  version "0.0.8"
-  resolved "https://registry.npm.taobao.org/sky-tools/download/sky-tools-0.0.8.tgz?cache=0&sync_timestamp=1568174084006&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fsky-tools%2Fdownload%2Fsky-tools-0.0.8.tgz#3db77f9df8c70d5cbf2d3f9b7f154150f077e959"
-  integrity sha1-Pbd/nfjHDVy/LT+bfxVBUPB36Vk=
+sky-tools@^0.0.9:
+  version "0.0.9"
+  resolved "https://registry.npm.taobao.org/sky-tools/download/sky-tools-0.0.9.tgz#193954f9821e0af563cc9743d35982082b07c4fa"
+  integrity sha1-GTlU+YIeCvVjzJdD01mCCCsHxPo=
   dependencies:
+    address "^1.1.2"
+    browserslist "^4.7.0"
     chalk "^2.4.2"
     detect-port-alt "^1.1.6"
+    inquirer "^7.0.0"
     is-root "^2.1.0"
+    pkg-up "^3.1.0"
 
 slash@^1.0.0:
   version "1.0.0"

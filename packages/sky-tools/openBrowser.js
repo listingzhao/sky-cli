@@ -27,12 +27,9 @@ function getBrowserEnv() {
 }
 
 function startBrowserProcess(bo, url, args) {
-    console.log('browser:', bo)
-    console.log('platform:', process.platform)
     const tryOpenChromeAppleScript =
         process.platform === 'darwin' &&
         (typeof bo !== 'string' || bo === OSX_CHROME)
-    console.log(tryOpenChromeAppleScript)
     if (tryOpenChromeAppleScript) {
         try {
             execSync('ps cax | grep "Google Chrome"')
