@@ -1,8 +1,9 @@
 import * as React from 'react';
-import ReactDOM from 'react-dom';
+import * as ReactDOM from 'react-dom';
 import './index.css'
+import printMe from './pringt.js'
 
-let hello: string = 'Hello WPT3'
+let hello: string = 'Hello WPT'
 
 class App extends React.Component {
     render() {
@@ -15,6 +16,14 @@ class App extends React.Component {
             </ul>
         </div>
     }
+}
+
+console.log(module.hot)
+if (module.hot) {
+    module.hot.accept('./pringt.js', function () {
+        console.log('Accepting the updated printMe module!');
+        printMe()
+    })
 }
 
 // debugger

@@ -95,9 +95,9 @@ function createCompiler({ config, appName, urls, webpack }) {
     })
 
     compiler.hooks.done.tap('done', async stats => {
-        if (isActive) {
-            clearConsole()
-        }
+        // if (isActive) {
+        //     clearConsole()
+        // }
         const statsData = stats.toJson({
             all: false,
             warnings: true,
