@@ -6,6 +6,8 @@
         "node": ">=8.10"
     },
     "files": [
+        "chalk.js",
+        "immer.js",
         "crossSpawn.js",
         "globby.js",
         "browserHelper.js",
