@@ -30,3 +30,19 @@ module.exports = {
     appNodeModules: resolveApp('node_modules'),
     yarnLockFile: resolveApp('yarn.lock'),
 }
+
+const resolveOwn = relativePath => path.resolve(__dirname, '..', relativePath)
+
+if (__dirname.indexOf(path.join('packages', 'sky-scripts', 'build')) !== -1) {
+    module.exports = {
+        appPath: resolveOwn('.'),
+        appPublic: resolveOwn('demo/public'),
+        appHtml: resolveOwn('demo/public/index.html'),
+        appIndexJs: resolveModules(resolveOwn, 'demo/src/index'),
+        appSrc: resolveOwn('demo/src'),
+        appTsConfig: resolveOwn('demo/tsconfig.json'),
+        pkgJson: resolveOwn('package.json'),
+        appNodeModules: resolveOwn('node_modules'),
+        yarnLockFile: resolveOwn('demo/yarn.lock'),
+    }
+}

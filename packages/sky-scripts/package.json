@@ -50,6 +50,7 @@
         "rucksack-css": "^1.0.2",
         "semver": "^6.3.0",
         "sky-tools": "^0.1.3",
+        "style-loader": "^1.0.0",
         "ts-loader": "^6.1.0",
         "url-loader": "^2.1.0",
         "webpack": "4.39.3",
@@ -57,5 +58,9 @@
         "webpack-dev-server": "3.8.0",
         "webpack-merge": "^4.2.2"
     },
-    "gitHead": "0b3205be059cac058f56ddf16be1a03f70c98d4c"
+    "gitHead": "0b3205be059cac058f56ddf16be1a03f70c98d4c",
+    "devDependencies": {
+        "react": "^16.9.0",
+        "react-dom": "^16.9.0"
+    }
 }

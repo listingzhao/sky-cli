@@ -16,6 +16,8 @@ const svgOptions = {
 const imageOptions = {
     limit: 10000,
 }
+const isDev = process.env.NODE_ENV === 'development'
+const isProd = process.env.NODE_ENV === 'production'
 module.exports = {
     entry: paths.appIndexJs,
     output: {
@@ -52,6 +54,7 @@ module.exports = {
             {
                 test: /\.css$/,
                 use: [
+                    resolve('style-loader'),
                     MiniCssExtractPlugin.loader,
                     {
                         loader: 'css-loader',
@@ -68,6 +71,7 @@ module.exports = {
             {
                 test: /\.less$/,
                 use: [
+                    resolve('style-loader'),
                     MiniCssExtractPlugin.loader,
                     {
                         loader: 'css-loader',

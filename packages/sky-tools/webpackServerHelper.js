@@ -3,7 +3,6 @@ const chalk = require('chalk')
 const url = require('url')
 const fs = require('fs')
 const address = require('address')
-const webpack = require('webpack')
 const isRoot = require('is-root')
 const clearConsole = require('./clearConsole')
 const fomatWebpackMsgs = require('./fomatWebpackMsgs')
@@ -78,7 +77,7 @@ function choosePort(host, defaultPort) {
     )
 }
 
-function createCompiler({ config, appName, urls }) {
+function createCompiler({ config, appName, urls, webpack }) {
     let compiler
     try {
         compiler = webpack(config)
@@ -89,9 +88,9 @@ function createCompiler({ config, appName, urls }) {
     }
 
     compiler.hooks.invalid.tap('invalid', () => {
-        if (isActive) {
-            clearConsole()
-        }
+        // if (isActive) {
+        //     clearConsole()
+        // }
         console.log('Compiling...')
     })
 

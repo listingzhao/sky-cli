@@ -2,7 +2,6 @@
  * start.js
  */
 'use strict'
-console.log('>>>>>>>>>>>start.js>>>>>>>>>>>>>>')
 process.env.NODE_ENV = 'development'
 
 process.on('unhandledRejection', err => {
@@ -65,6 +64,7 @@ checkBrowsers(paths.appPath, isActive)
             appName,
             protocol,
             urls,
+            webpack,
         })
 
         const proxySetting = require(paths.pkgJson).proxy

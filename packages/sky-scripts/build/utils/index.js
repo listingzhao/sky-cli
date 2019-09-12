@@ -11,6 +11,7 @@ function getProjectPath(...filePath) {
 }
 
 function ignoredFiles(srcPath) {
+    console.log(srcPath)
     return new RegExp(
         `^(?!${escape(
             path.normalize(srcPath + '/').replace(/[\\]+/g, '/')
