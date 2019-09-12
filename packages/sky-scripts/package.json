@@ -2,15 +2,26 @@
     "name": "sky-scripts",
     "version": "0.0.4",
     "description": "sky-scripts",
+    "engines": {
+        "node": ">=8.10"
+    },
+    "files": [
+        "bin",
+        "build",
+        "demo",
+        "scripts",
+        "utils"
+    ],
     "bin": {
-        "sky-scripts": "./bin/sky.js"
+        "sky-scripts": "bin/sky.js"
     },
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/listingzhao/sky-cli.git"
+        "url": "git+https://github.com/listingzhao/sky-cli.git",
+        "directory": "packages/sky-scripts"
     },
     "keywords": [
         "sky-scripts"
@@ -27,7 +38,7 @@
         "@babel/preset-env": "^7.5.5",
         "@babel/preset-react": "^7.0.0",
         "autoprefixer": "^9.6.1",
-        "babel-loader": "^8.0.6",
+        "babel-loader": "8.0.6",
         "babel-plugin-inline-import-data-uri": "^1.0.1",
         "clean-webpack-plugin": "^3.0.0",
         "css-loader": "^3.2.0",

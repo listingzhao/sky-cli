@@ -3,8 +3,8 @@
 process.on('unhandledRejection', err => {
     throw err
 })
- 
-const spawn = require('cross-spawn')
+
+const spawn = require('sky-tools/crossSpawn')
 const args = process.argv.slice(2)
 
 const scriptIndex = args.findIndex(
@@ -17,9 +17,16 @@ switch (script) {
     case 'build':
     case 'start':
     case 'test':
-        const result = spawn.sync('node', nodeArgs.concat(require.resolve('../scripts/' + script)
-        .concat(args.slice(scriptIndex + 1))), {stdio: 'inherit'})
-        process.exit(result.status);
+        const result = spawn.sync(
+            'node',
+            nodeArgs.concat(
+                require
+                    .resolve('../scripts/' + script)
+                    .concat(args.slice(scriptIndex + 1))
+            ),
+            { stdio: 'inherit' }
+        )
+        process.exit(result.status)
         break
     default:
         console.log('Unknow script "' + script + '"')

@@ -5,11 +5,8 @@
     "main": "src/index.tsx",
     "author": "zxz <zhaoxz@weipaitang.com>",
     "license": "MIT",
-    "bin": {
-        "sky-cli": "./bin/sky.js"
-    },
     "scripts": {
-        "start": "node ./bin/sky.js start",
+        "start": "cd packages/sky-scripts && node bin/sky.js start",
         "build": "webpack --mode=production --config ./build/webpack.config.js"
     },
     "dependencies": {
