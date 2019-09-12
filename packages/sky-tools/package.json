@@ -6,6 +6,7 @@
         "node": ">=8.10"
     },
     "files": [
+        "crossSpawn.js",
         "globby.js",
         "browserHelper.js",
         "openBrowser.js",
