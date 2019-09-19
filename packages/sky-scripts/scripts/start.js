@@ -49,12 +49,10 @@ checkBrowsers(paths.appPath, isActive)
         return choosePort(HOST, DEFAULT_PORT)
     })
     .then(port => {
-        console.log('port:>>>>>>', port)
         if (port == null) {
             return
         }
         const config = webpackConfig('development')
-        console.log(config)
         const protocol = process.env.HTTPS === 'true' ? 'https' : 'http'
         const appName = require(paths.pkgJson).name
         const urls = preParseUrls(protocol, HOST, port)
@@ -85,7 +83,7 @@ checkBrowsers(paths.appPath, isActive)
             console.log(chalk.cyan('Starting the develoment server. \n'))
             openBrowser(urls.localUrlForBoswer)
         })
-        console.log(Array.from(['SIGINT', 'SIGTERM']))
+
         Array.from(['SIGINT', 'SIGTERM']).forEach(sig => {
             process.on(sig, () => {
                 console.log('Control-C 退出')

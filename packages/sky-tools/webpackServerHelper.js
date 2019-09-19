@@ -88,9 +88,9 @@ function createCompiler({ config, appName, urls, webpack }) {
     }
 
     compiler.hooks.invalid.tap('invalid', () => {
-        // if (isActive) {
-        //     clearConsole()
-        // }
+        if (isActive) {
+            clearConsole()
+        }
         console.log('Compiling...')
     })
 

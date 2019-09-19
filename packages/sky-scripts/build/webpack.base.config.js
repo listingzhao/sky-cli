@@ -18,6 +18,38 @@ const imageOptions = {
 }
 const isDev = process.env.NODE_ENV === 'development'
 const isProd = process.env.NODE_ENV === 'production'
+
+const getStylesLoader = (cssOptions, afterLoader) => {
+    const loaders = [
+        isDev && resolve('style-loader'),
+        isProd && {
+            loader: MiniCssExtractPlugin.loader,
+            options: {},
+        },
+        {
+            loader: 'css-loader',
+            options: cssOptions,
+        },
+        {
+            loader: 'postcss-loader',
+            options: { ...postcssConfig, sourceMap: true },
+        },
+    ].filter(Boolean)
+
+    if (afterLoader) {
+        loaders.push({
+            loader: require.resolve(afterLoader),
+            options: {
+                javascriptEnabled: true,
+                sourceMap: true,
+            },
+        })
+    }
+
+    console.log(loaders)
+    return loaders
+}
+console.log(isProd)
 module.exports = {
     entry: paths.appIndexJs,
     output: {
@@ -53,43 +85,16 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                use: [
-                    resolve('style-loader'),
-                    MiniCssExtractPlugin.loader,
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            sourceMap: true,
-                        },
-                    },
-                    {
-                        loader: 'postcss-loader',
-                        options: { ...postcssConfig, sourceMap: true },
-                    },
-                ],
+                use: getStylesLoader({ importLoaders: 1, sourceMap: true }),
                 // https://github.com/webpack/webpack/issues/6571
                 sideEffects: true,
             },
             {
                 test: /\.less$/,
-                use: [
-                    resolve('style-loader'),
-                    MiniCssExtractPlugin.loader,
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            sourceMap: true,
-                        },
-                    },
-                    {
-                        loader: 'postcss-loader',
-                        options: { ...postcssConfig, sourceMap: true },
-                    },
-                    {
-                        loader: 'less-loader',
-                        options: { javascriptEnabled: true, sourceMap: true },
-                    },
-                ],
+                use: getStylesLoader(
+                    { importLoaders: 2, sourceMap: true },
+                    'less-loader'
+                ),
             },
             // image
             {
