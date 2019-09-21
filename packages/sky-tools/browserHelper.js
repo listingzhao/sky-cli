@@ -61,7 +61,6 @@ function checkBrowsers(dir, active, retry = true) {
 
         return pkgUp(dir)
             .then(path => {
-                console.log(path)
                 if (path == null) {
                     return Promise.reject()
                 }

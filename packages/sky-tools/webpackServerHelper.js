@@ -136,7 +136,6 @@ function createProxy(proxy, appPublic) {
 
     function mayProxy(pathName) {
         const mayPublicPath = path.resolve(appPublic, pathName.slice(1))
-        console.log(mayPublicPath)
         const isPublicFileReq = fs.existsSync(mayPublicPath)
         return !isPublicFileReq
     }
@@ -151,7 +150,6 @@ function createProxy(proxy, appPublic) {
     return [
         {
             context: (pathName, req) => {
-                console.log(pathName)
                 return (
                     req.method !== 'GET' ||
                     (mayProxy(pathName) &&

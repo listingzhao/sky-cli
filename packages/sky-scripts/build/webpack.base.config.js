@@ -2,6 +2,7 @@ const webpack = require('webpack')
 const paths = require('./paths')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const getCssModuleLocalIdent = require('sky-tools/getCssModuleLocalIdent')
 const { resolve } = require('./utils')
 
 const babelConfig = require('./getBabelConfig')(false)
@@ -46,10 +47,9 @@ const getStylesLoader = (cssOptions, afterLoader) => {
         })
     }
 
-    console.log(loaders)
     return loaders
 }
-console.log(isProd)
+
 module.exports = {
     entry: paths.appIndexJs,
     output: {
@@ -85,14 +85,41 @@ module.exports = {
             },
             {
                 test: /\.css$/,
+                exclude: /\.m.css$/,
                 use: getStylesLoader({ importLoaders: 1, sourceMap: true }),
                 // https://github.com/webpack/webpack/issues/6571
                 sideEffects: true,
             },
             {
+                test: /\.m.css$/,
+                use: getStylesLoader({
+                    importLoaders: 1,
+                    sourceMap: true,
+                    modules: {
+                        getLocalIdent: getCssModuleLocalIdent,
+                    },
+                }),
+            },
+            {
                 test: /\.less$/,
+                exclude: /\.m.less$/,
                 use: getStylesLoader(
                     { importLoaders: 2, sourceMap: true },
+                    'less-loader'
+                ),
+                // https://github.com/webpack/webpack/issues/6571
+                sideEffects: true,
+            },
+            {
+                test: /\.m.less$/,
+                use: getStylesLoader(
+                    {
+                        importLoaders: 2,
+                        sourceMap: true,
+                        modules: {
+                            getLocalIdent: getCssModuleLocalIdent,
+                        },
+                    },
                     'less-loader'
                 ),
             },
