@@ -17,7 +17,8 @@
         "fomatWebpackMsgs.js",
         "webpackServerHelper.js",
         "clearConsole.js",
-        "getCssModuleLocalIdent.js"
+        "getCssModuleLocalIdent.js",
+        "ForkTsCheckerWebpackPlugin.js"
     ],
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
@@ -34,6 +35,7 @@
         "cross-spawn": "^7.0.0",
         "detect-port-alt": "^1.1.6",
         "escape-string-regexp": "^2.0.0",
+        "fork-ts-checker-webpack-plugin": "^1.5.0",
         "globby": "^10.0.1",
         "immer": "^3.2.1",
         "inquirer": "^7.0.0",

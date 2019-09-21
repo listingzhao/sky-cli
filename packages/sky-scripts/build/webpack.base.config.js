@@ -1,12 +1,15 @@
+const fs = require('fs')
 const webpack = require('webpack')
 const paths = require('./paths')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const getCssModuleLocalIdent = require('sky-tools/getCssModuleLocalIdent')
+const ForkTsCheckerWebpackPlugin = require('ForkTsCheckerWebpackPlugin')
 const { resolve } = require('./utils')
 
 const babelConfig = require('./getBabelConfig')(false)
 const postcssConfig = require('./getPostcssConfig')
+const useTypeScript = fs.existsSync(paths.appTsConfig)
 
 const svgRegex = /\.svg(\?v=\d+\.\d+\.\d+)?$/
 const svgOptions = {
@@ -143,5 +146,8 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: paths.appHtml,
         }),
+        useTypeScript && new ForkTsCheckerWebpackPlugin({
+            async: isDev
+        })
     ],
 }
