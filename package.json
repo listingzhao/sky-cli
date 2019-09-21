@@ -1,32 +1,50 @@
 {
-    "name": "wpt-react",
-    "version": "0.0.1",
-    "description": "demo",
-    "main": "src/index.tsx",
-    "author": "zxz <zhaoxz@weipaitang.com>",
-    "license": "MIT",
-    "scripts": {
-        "start": "cd packages/sky-scripts && node bin/sky.js start",
-        "build": "webpack --mode=production --config ./build/webpack.config.js"
-    },
-    "dependencies": {
-        "@babel/core": "^7.5.5",
-        "@babel/plugin-transform-typescript": "^7.5.5",
-        "@babel/preset-env": "^7.5.5",
-        "@babel/preset-react": "^7.0.0",
-        "@types/react": "^16.9.2",
-        "@types/react-dom": "^16.9.0",
-        "typescript": "^3.6.2"
-    },
-    "devDependencies": {
-        "lerna": "^3.16.4"
-    },
-    "browserslist": [
-        "last 2 versions",
-        "Firefox ESR",
-        "> 1%",
-        "ie >= 9",
-        "iOS >= 8",
-        "Android >= 4"
+  "name": "wpt-react",
+  "version": "0.0.1",
+  "description": "demo",
+  "main": "src/index.tsx",
+  "author": "zxz <zhaoxz@weipaitang.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "cd packages/sky-scripts && node bin/sky.js start",
+    "build": "webpack --mode=production --config ./build/webpack.config.js",
+    "format": "prettier --trailing-comma es5 --single-quote --write 'packages/*/*.js' 'packages/*/!(node_modules)/**/*.js'"
+  },
+  "dependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-transform-typescript": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.0.0",
+    "@types/react": "^16.9.2",
+    "@types/react-dom": "^16.9.0",
+    "typescript": "^3.6.2"
+  },
+  "devDependencies": {
+    "husky": "^3.0.5",
+    "lerna": "^3.16.4",
+    "lint-staged": "^9.2.5",
+    "prettier": "^1.18.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,md,css,html}": [
+      "prettier --trailing-comma es5 --single-quote --write",
+      "git add"
+    ],
+    "yarn.lock": [
+      "git rm --cached"
     ]
+  },
+  "browserslist": [
+    "last 2 versions",
+    "Firefox ESR",
+    "> 1%",
+    "ie >= 9",
+    "iOS >= 8",
+    "Android >= 4"
+  ]
 }

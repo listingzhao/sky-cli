@@ -1,5 +1,5 @@
-'use strict'
+'use strict';
 
-const globby = require('globby')
+const globby = require('globby');
 
-module.exports = globby
+module.exports = globby;

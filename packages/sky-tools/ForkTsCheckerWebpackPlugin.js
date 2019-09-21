@@ -1,5 +1,5 @@
-'use strict'
+'use strict';
 
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
-module.exports = ForkTsCheckerWebpackPlugin
+module.exports = ForkTsCheckerWebpackPlugin;

@@ -1,5 +1,5 @@
-'use strict'
+'use strict';
 
-const crossSpawn = require('cross-spawn')
+const crossSpawn = require('cross-spawn');
 
-module.exports = crossSpawn
+module.exports = crossSpawn;

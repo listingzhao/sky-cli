@@ -1,3 +1,3 @@
 export default function printMe() {
-    console.log('print me.haha')
+  console.log('print me.haha');
 }

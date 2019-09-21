@@ -1,5 +1,5 @@
-'use strict'
+'use strict';
 
-const immer = require('immer')
+const immer = require('immer');
 
-module.exports = immer
+module.exports = immer;
