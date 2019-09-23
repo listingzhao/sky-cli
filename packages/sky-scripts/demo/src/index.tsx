@@ -7,7 +7,7 @@ import './index.css'
 import './lessA.less'
 import printMe from './pringt.js'
 
-let hello = 'Hello WPT'
+let hello: string = 'Hello WPT'
 
 class App extends React.Component {
     render() {
