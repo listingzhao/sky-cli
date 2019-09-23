@@ -1,6 +1,6 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import * as S from './style/index.m.css'
+import S from './style/index.m.css'
 import C from './style/com.m.css'
 import LessB from './lessB.m.less'
 import './index.css'
@@ -24,14 +24,6 @@ class App extends React.Component {
             </div>
         )
     }
-}
-
-console.log(module.hot)
-if (module.hot) {
-    module.hot.accept('./pringt.js', function() {
-        console.log('Accepting the updated printMe module!')
-        printMe()
-    })
 }
 
 console.log(hello)
