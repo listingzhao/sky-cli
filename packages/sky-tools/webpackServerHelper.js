@@ -110,10 +110,10 @@ function createCompiler({ config, appName, urls, useTypeScript, webpack }) {
       .receive.tap('afterTypeScriptCheck', (diagnostics, lint) => {
         console.log(diagnostics);
         const allMsgs = [...diagnostics, ...lint];
-        const fomat = message =>
+        const format = message =>
           `${message.file}\n ${typescriptFomatter(message, true)}`;
 
-        tsMessagesResolver({
+        tsMessageResolver({
           errors: allMsgs.filter(msg => msg.severity === 'error').map(format),
           warnings: allMsgs
             .filter(msg => msg.severity === 'warning')

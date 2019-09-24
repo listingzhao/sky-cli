@@ -55,7 +55,7 @@ checkBrowsers(paths.appPath, isActive)
     const config = webpackConfig('development');
     const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
     const appName = require(paths.pkgJson).name;
-    const userTypeScript = fs.existsSync(paths.appTsConfig);
+    const useTypeScript = fs.existsSync(paths.appTsConfig);
     const urls = preParseUrls(protocol, HOST, port);
 
     const compiler = createCompiler({
@@ -63,7 +63,7 @@ checkBrowsers(paths.appPath, isActive)
       appName,
       protocol,
       urls,
-      userTypeScript,
+      useTypeScript,
       webpack,
     });
 
@@ -79,9 +79,9 @@ checkBrowsers(paths.appPath, isActive)
         console.log(err);
         return;
       }
-      if (isActive) {
-        clearConsole();
-      }
+      //   if (isActive) {
+      //     clearConsole();
+      //   }
       console.log(chalk.cyan('Starting the develoment server. \n'));
       openBrowser(urls.localUrlForBoswer);
     });
