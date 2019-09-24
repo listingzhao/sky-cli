@@ -6,6 +6,8 @@ const address = require('address');
 const isRoot = require('is-root');
 const clearConsole = require('./clearConsole');
 const fomatWebpackMsgs = require('./fomatWebpackMsgs');
+const typescriptFomatter = require('./typescriptFomatter');
+const forkTsCheckerWebpackPlugin = require('./ForkTsCheckerWebpackPlugin');
 const isActive = process.stdout.isTTY;
 
 function preParseUrls(protocol, host, port) {
@@ -75,7 +77,7 @@ function choosePort(host, defaultPort) {
   );
 }
 
-function createCompiler({ config, appName, urls, webpack }) {
+function createCompiler({ config, appName, urls, useTypeScript, webpack }) {
   let compiler;
   try {
     compiler = webpack(config);
@@ -92,6 +94,33 @@ function createCompiler({ config, appName, urls, webpack }) {
     console.log('Compiling...');
   });
 
+  let tsMessagePromise;
+  let tsMessageResolver;
+
+  if (useTypeScript) {
+    compiler.hooks.beforeCompile.tap('beforeCompile', () => {
+      tsMessagePromise = new Promise(resolve => {
+        tsMessageResolver = msgs => resolve(msgs);
+      });
+    });
+
+    forkTsCheckerWebpackPlugin
+      .getCompilerHooks(compiler)
+      .receive.tap('afterTypeScriptCheck', (diagnostics, lint) => {
+        console.log(diagnostics);
+        const allMsgs = [...diagnostics, ...lint];
+        const fomat = message =>
+          `${message.file}\n ${typescriptFomatter(message, true)}`;
+
+        tsMessagesResolver({
+          errors: allMsgs.filter(msg => msg.severity === 'error').map(format),
+          warnings: allMsgs
+            .filter(msg => msg.severity === 'warning')
+            .map(format),
+        });
+      });
+  }
+
   compiler.hooks.done.tap('done', async stats => {
     // if (isActive) {
     //     clearConsole()
@@ -101,6 +130,19 @@ function createCompiler({ config, appName, urls, webpack }) {
       warnings: true,
       errors: true,
     });
+
+    if (useTypeScript) {
+      const message = await tsMessagePromise;
+      console.log(message);
+      statsData.errors.push(...message.errors);
+      statsData.warnings.push(...message.warnings);
+
+      stats.compilation.errors.push(...message.errors);
+      stats.compilation.warnings.push(...message.warnings);
+      if (isActive) {
+        clearConsole();
+      }
+    }
 
     const webpackMsg = fomatWebpackMsgs(statsData);
     const isSuccess = !webpackMsg.errors.length && !webpackMsg.warnings.length;

@@ -55,6 +55,7 @@ checkBrowsers(paths.appPath, isActive)
     const config = webpackConfig('development');
     const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
     const appName = require(paths.pkgJson).name;
+    const userTypeScript = fs.existsSync(paths.appTsConfig);
     const urls = preParseUrls(protocol, HOST, port);
 
     const compiler = createCompiler({
@@ -62,6 +63,7 @@ checkBrowsers(paths.appPath, isActive)
       appName,
       protocol,
       urls,
+      userTypeScript,
       webpack,
     });
 
