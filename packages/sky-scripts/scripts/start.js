@@ -57,6 +57,12 @@ checkBrowsers(paths.appPath, isActive)
     const appName = require(paths.pkgJson).name;
     const useTypeScript = fs.existsSync(paths.appTsConfig);
     const urls = preParseUrls(protocol, HOST, port);
+    const devSocket = {
+      errors: errors =>
+        devServer.sockWrite(devServer.sockets, 'errors', errors),
+      warings: warings =>
+        devServer.sockWrite(devServer.sockets, 'warings', warings),
+    };
 
     const compiler = createCompiler({
       config,
@@ -65,6 +71,7 @@ checkBrowsers(paths.appPath, isActive)
       urls,
       useTypeScript,
       webpack,
+      devSocket,
     });
 
     const proxySetting = require(paths.pkgJson).proxy;
@@ -74,6 +81,7 @@ checkBrowsers(paths.appPath, isActive)
       urls.urlForConfig
     );
     const devServer = new webpackDevServer(compiler, devServerConfig);
+    console.log(devServer);
     devServer.listen(port, HOST, err => {
       if (err) {
         console.log(err);

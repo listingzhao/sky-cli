@@ -77,7 +77,14 @@ function choosePort(host, defaultPort) {
   );
 }
 
-function createCompiler({ config, appName, urls, useTypeScript, webpack }) {
+function createCompiler({
+  config,
+  appName,
+  urls,
+  useTypeScript,
+  webpack,
+  devSocket,
+}) {
   let compiler;
   try {
     compiler = webpack(config);
@@ -123,9 +130,9 @@ function createCompiler({ config, appName, urls, useTypeScript, webpack }) {
   }
 
   compiler.hooks.done.tap('done', async stats => {
-    // if (isActive) {
-    //     clearConsole()
-    // }
+    if (isActive) {
+      clearConsole();
+    }
     const statsData = stats.toJson({
       all: false,
       warnings: true,
@@ -139,17 +146,27 @@ function createCompiler({ config, appName, urls, useTypeScript, webpack }) {
       statsData.warnings.push(...message.warnings);
 
       stats.compilation.errors.push(...message.errors);
-      stats.compilation.warnings.push(...message.warnings);
-      if (isActive) {
-        clearConsole();
+      stats.compilation.warnings.push(...message.errors);
+
+      if (message.errors.length > 0) {
+        devSocket.errors.push(...message.errors);
       }
+      if (message.warnings.length > 0) {
+        devSocket.warnings.push(...message.warnings);
+      }
+
+      // if (isActive) {
+      //   clearConsole();
+      // }
     }
 
     const webpackMsg = fomatWebpackMsgs(statsData);
     const isSuccess = !webpackMsg.errors.length && !webpackMsg.warnings.length;
+    if (isSuccess) {
+      console.log(chalk.green('Compiled successfully!'));
+    }
 
     if (isSuccess && isFirstCompiler) {
-      console.log(chalk.green('Compiled successfully!'));
       pringtIntroductions(appName, urls);
     }
     isFirstCompiler = false;

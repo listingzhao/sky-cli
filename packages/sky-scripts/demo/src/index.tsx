@@ -1,15 +1,14 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import S from './style/index.m.css'
-import C from './style/com.m.css'
-import LessB from './lessB.m.less'
 import './index.css'
 import './lessA.less'
-import printMe from './pringt.js'
+
+// css module
+const S = require('./style/index.m.css')
+const C = require('./style/com.m.css')
+const LessB = require('./lessB.m.less')
 
 let hello: string = 'Hello WPT'
-
-hello = 123
 
 class App extends React.Component {
     render() {
