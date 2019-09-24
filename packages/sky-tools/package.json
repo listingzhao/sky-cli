@@ -18,7 +18,8 @@
         "webpackServerHelper.js",
         "clearConsole.js",
         "getCssModuleLocalIdent.js",
-        "ForkTsCheckerWebpackPlugin.js"
+        "ForkTsCheckerWebpackPlugin.js",
+        "typescriptFomatter.js"
     ],
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
