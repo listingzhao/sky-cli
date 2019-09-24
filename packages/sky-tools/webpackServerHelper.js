@@ -151,7 +151,7 @@ function createCompiler({ config, appName, urls, useTypeScript, webpack }) {
     }
     isFirstCompiler = false;
 
-    if (message.errors.length) {
+    if (webpackMsg.errors.length) {
       console.log(chalk.red('Failed to compile.\n'));
       return;
     }
