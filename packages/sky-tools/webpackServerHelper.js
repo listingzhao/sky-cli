@@ -77,14 +77,7 @@ function choosePort(host, defaultPort) {
   );
 }
 
-function createCompiler({
-  config,
-  appName,
-  urls,
-  useTypeScript,
-  webpack,
-  devSocket,
-}) {
+function createCompiler({ config, appName, urls, useTypeScript, webpack }) {
   let compiler;
   try {
     compiler = webpack(config);
@@ -115,7 +108,6 @@ function createCompiler({
     forkTsCheckerWebpackPlugin
       .getCompilerHooks(compiler)
       .receive.tap('afterTypeScriptCheck', (diagnostics, lint) => {
-        console.log(diagnostics);
         const allMsgs = [...diagnostics, ...lint];
         const format = message =>
           `${message.file}\n ${typescriptFomatter(message, true)}`;
@@ -130,9 +122,9 @@ function createCompiler({
   }
 
   compiler.hooks.done.tap('done', async stats => {
-    if (isActive) {
-      clearConsole();
-    }
+    // if (isActive) {
+    //   clearConsole();
+    // }
     const statsData = stats.toJson({
       all: false,
       warnings: true,
@@ -141,23 +133,11 @@ function createCompiler({
 
     if (useTypeScript) {
       const message = await tsMessagePromise;
-      console.log(message);
       statsData.errors.push(...message.errors);
       statsData.warnings.push(...message.warnings);
-
-      stats.compilation.errors.push(...message.errors);
-      stats.compilation.warnings.push(...message.errors);
-
-      if (message.errors.length > 0) {
-        devSocket.errors.push(...message.errors);
+      if (isActive) {
+        clearConsole();
       }
-      if (message.warnings.length > 0) {
-        devSocket.warnings.push(...message.warnings);
-      }
-
-      // if (isActive) {
-      //   clearConsole();
-      // }
     }
 
     const webpackMsg = fomatWebpackMsgs(statsData);
@@ -170,6 +150,11 @@ function createCompiler({
       pringtIntroductions(appName, urls);
     }
     isFirstCompiler = false;
+
+    if (message.errors.length) {
+      console.log(chalk.red('Failed to compile.\n'));
+      return;
+    }
   });
 
   return compiler;
