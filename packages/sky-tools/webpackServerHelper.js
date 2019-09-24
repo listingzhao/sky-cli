@@ -94,6 +94,7 @@ function createCompiler({ config, appName, urls, useTypeScript, webpack }) {
     console.log('Compiling...');
   });
 
+  let isFirstCompiler = true;
   let tsMessagePromise;
   let tsMessageResolver;
 
@@ -146,10 +147,12 @@ function createCompiler({ config, appName, urls, useTypeScript, webpack }) {
 
     const webpackMsg = fomatWebpackMsgs(statsData);
     const isSuccess = !webpackMsg.errors.length && !webpackMsg.warnings.length;
-    if (isSuccess) {
+
+    if (isSuccess && isFirstCompiler) {
       console.log(chalk.green('Compiled successfully!'));
       pringtIntroductions(appName, urls);
     }
+    isFirstCompiler = false;
   });
 
   return compiler;

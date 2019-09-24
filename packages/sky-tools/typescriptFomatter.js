@@ -9,13 +9,14 @@ const types = { diagnostic: 'TypeScript', lint: 'TSLint' };
 
 function fomatter(message, useColors) {
   console.log(message);
-  const { type, file, severity, content, character } =
+  const { type, file, severity, content, character, line } =
     typeof message.getFile() === 'function'
       ? {
           type: message.getType(),
           file: message.getFile(),
           severity: message.getSeverity(),
           content: message.getContent(),
+          line: message.getLine(),
           character: message.getCharacter(),
         }
       : message;
