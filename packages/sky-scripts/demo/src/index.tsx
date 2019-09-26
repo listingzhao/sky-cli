@@ -10,7 +10,7 @@ const LessB = require('./lessB.m.less')
 
 let hello: string = 'Hello WPT'
 
-hello = 123
+// hello = 123
 
 class App extends React.Component {
     render() {

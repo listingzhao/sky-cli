@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const paths = require('./paths');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const ManifestPlugin = require('webpack-manifest-plugin');
 const getCssModuleLocalIdent = require('sky-tools/getCssModuleLocalIdent');
 const ForkTsCheckerWebpackPlugin = require('sky-tools/ForkTsCheckerWebpackPlugin');
 const { resolve } = require('./utils');
@@ -22,6 +23,7 @@ const imageOptions = {
 };
 const isDev = process.env.NODE_ENV === 'development';
 const isProd = process.env.NODE_ENV === 'production';
+const publicPath = isDev ? '/' : paths.appTsConfig;
 
 const getStylesLoader = (cssOptions, afterLoader) => {
   const loaders = [
@@ -145,6 +147,23 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       template: paths.appHtml,
+    }),
+    new ManifestPlugin({
+      publicPath: publicPath,
+      generate: (seed, files, entrypoints) => {
+        const manifestFiles = files.reduce((manifest, file) => {
+          manifest[file.name] = file.path;
+          return manifest;
+        }, seed);
+        const entrypointFiles = entrypoints.main.filter(
+          fileName => !fileName.endsWith('.map')
+        );
+
+        return {
+          files: manifestFiles,
+          entrypoints: entrypointFiles,
+        };
+      },
     }),
     useTypeScript &&
       new ForkTsCheckerWebpackPlugin({

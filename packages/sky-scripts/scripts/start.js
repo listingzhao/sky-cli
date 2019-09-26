@@ -79,9 +79,9 @@ checkBrowsers(paths.appPath, isActive)
         console.log(err);
         return;
       }
-      //   if (isActive) {
-      //     clearConsole();
-      //   }
+      if (isActive) {
+        clearConsole();
+      }
       console.log(chalk.cyan('Starting the develoment server. \n'));
       openBrowser(urls.localUrlForBoswer);
     });

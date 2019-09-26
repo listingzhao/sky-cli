@@ -21,6 +21,7 @@ const resolveModules = (resolveFn, path) => {
 
 module.exports = {
   appPath: resolveApp('.'),
+  appBuild: resolveApp('dist'),
   appPublic: resolveApp('public'),
   appHtml: resolveApp('public/index.html'),
   appIndexJs: resolveModules(resolveApp, 'src/index'),
@@ -36,6 +37,7 @@ const resolveOwn = relativePath => path.resolve(__dirname, '..', relativePath);
 if (__dirname.indexOf(path.join('packages', 'sky-scripts', 'build')) !== -1) {
   module.exports = {
     appPath: resolveOwn('.'),
+    appBuild: resolveApp('../../dist'),
     appPublic: resolveOwn('demo/public'),
     appHtml: resolveOwn('demo/public/index.html'),
     appIndexJs: resolveModules(resolveOwn, 'demo/src/index'),
