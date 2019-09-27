@@ -1,4 +1,4 @@
-const fs = require('fs');
+const fs = require('fs-extra');
 const webpack = require('webpack');
 const paths = require('./paths');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -58,7 +58,8 @@ const getStylesLoader = (cssOptions, afterLoader) => {
 module.exports = {
   entry: paths.appIndexJs,
   output: {
-    filename: 'app.js',
+    path: isProd ? paths.appBuild : undefined,
+    filename: '[name].[contenthash:8].js',
   },
   resolve: {
     extensions: ['.js', '.ts', '.tsx'],

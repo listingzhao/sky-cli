@@ -36,8 +36,8 @@ const resolveOwn = relativePath => path.resolve(__dirname, '..', relativePath);
 
 if (__dirname.indexOf(path.join('packages', 'sky-scripts', 'build')) !== -1) {
   module.exports = {
-    appPath: resolveOwn('.'),
-    appBuild: resolveApp('../../dist'),
+    appPath: resolveApp('.'),
+    appBuild: resolveOwn('demo/dist'),
     appPublic: resolveOwn('demo/public'),
     appHtml: resolveOwn('demo/public/index.html'),
     appIndexJs: resolveModules(resolveOwn, 'demo/src/index'),
