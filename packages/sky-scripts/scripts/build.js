@@ -95,6 +95,12 @@ checkBrowsers(paths.appPath, isActive)
     printFileSizes(stats, oldFiles, paths.appBuild);
   });
 
+/**
+ * 输出文件大小
+ * @param {*} webpackStats
+ * @param {*} oldFiles
+ * @param {*} buildPath
+ */
 function printFileSizes(webpackStats, oldFiles, buildPath) {
   let root = oldFiles.root;
   let sizes = oldFiles.sizes;
