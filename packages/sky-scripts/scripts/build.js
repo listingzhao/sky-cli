@@ -61,6 +61,11 @@ function fileSizeBeforeBuild(buildPath) {
   });
 }
 
+/**
+ * 去除hash
+ * @param {*} buildPath
+ * @param {*} fileName
+ */
 function removeFileHash(buildPath, fileName) {
   return fileName
     .replace(buildPath, '')
