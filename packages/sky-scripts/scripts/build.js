@@ -39,11 +39,15 @@ function copyPulicFiles() {
     filter: file => file !== paths.appHtml,
   });
 }
+
+/**
+ * 获取就文件大小信息
+ * @param {*} buildPath
+ */
 function fileSizeBeforeBuild(buildPath) {
   return new Promise(resolve => {
     recursive(buildPath, (err, fileNames) => {
       let sizes = {};
-      console.log();
       if (!err && Array.from(fileNames).length > 0) {
         sizes = fileNames.filter(canReadFile).reduce((memo, fileName) => {
           let content = fs.readFileSync(fileName);
