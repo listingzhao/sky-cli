@@ -168,6 +168,11 @@ function printFileSizes(webpackStats, oldFiles, buildPath) {
   });
 }
 
+/**
+ *
+ * @param {*} currentSize
+ * @param {*} preSize
+ */
 function getDifferenceLabel(currentSize, preSize) {
   const FIFTY_KILOBYTES = 1024 * 50;
   const diff = currentSize - preSize;
