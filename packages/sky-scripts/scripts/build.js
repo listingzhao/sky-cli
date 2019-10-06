@@ -169,7 +169,7 @@ function printFileSizes(webpackStats, oldFiles, buildPath) {
 }
 
 /**
- *
+ *  构造大小label
  * @param {*} currentSize
  * @param {*} preSize
  */
