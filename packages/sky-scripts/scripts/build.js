@@ -1,7 +1,5 @@
 'use strict';
 
-console.log('build.js');
-
 process.env.NODE_ENV = 'production';
 
 process.on('unhandledRejection', err => {
